@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "758011827263",
+    "project_id": "aalemni-5567b",
+    "storage_bucket": "aalemni-5567b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:758011827263:android:d4ec92189dab6c37ae148a",
+        "android_client_info": {
+          "package_name": "com.example.aalemni"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "758011827263-imsfs75cfp0c74ae6j0dtqf39607mf6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiBHlm4idbtM1weqWrP0aHJbTizRJ1WUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "758011827263-imsfs75cfp0c74ae6j0dtqf39607mf6q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

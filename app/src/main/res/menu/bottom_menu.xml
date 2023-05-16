@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_history"
+        android:icon="@drawable/history"
+        android:title="Historique"/>
+    <item
+        android:id="@+id/bottom_home"
+        android:icon="@drawable/home"
+        android:title="Home"/>
+    <item
+        android:id="@+id/bottom_speaker"
+        android:icon="@drawable/speaker"
+        android:title="Parleur"/>
+</menu>

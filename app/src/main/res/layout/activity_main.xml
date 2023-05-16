@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="100">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="400dp"
+                android:layout_height="370dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/border"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/pickbtn"
+                    android:layout_width="200dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@android:color/holo_red_light"
+                    android:drawableLeft="@drawable/add_photo"
+                    android:fontFamily="sans-serif-thin"
+                    android:text="Ajouter une image"
+                    android:textColor="@color/white"
+                    android:textSize="11dp" />
+                <Button
+                    android:id="@+id/recbtn"
+                    android:layout_width="200dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="20dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/design_default_color_secondary"
+                    android:drawableLeft="@drawable/scanner"
+                    android:fontFamily="sans-serif-thin"
+                    android:text="Traitement de l'image"
+                    android:textColor="@color/white"
+                    android:textSize="10dp" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/rectext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:textSize="20dp"
+                android:textIsSelectable="true"/>
+        </LinearLayout>
+    </ScrollView>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/tts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="15dp"
+        android:outlineSpotShadowColor="@color/black"
+        android:src="@drawable/voice" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            app:itemIconTint="@drawable/item_selector"
+            app:itemIconSize="30dp"
+            android:background="@drawable/bottom_background"
+            app:itemActiveIndicatorStyle="@style/Widget.MaterialComponents.BottomNavigationView"
+            app:labelVisibilityMode="unlabeled"
+            app:menu="@menu/bottom_menu" />
+    </LinearLayout>
+</LinearLayout>

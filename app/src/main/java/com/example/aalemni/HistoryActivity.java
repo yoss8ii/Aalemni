@@ -59,8 +59,9 @@ public class HistoryActivity extends AppCompatActivity {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     String imageUrl = document.getString("imageUrl");
                     Date uploadTime = document.getDate("uploadTime");
+                    String imgId = document.getId();
                     if (imageUrl != null && uploadTime != null) {
-                        ImageHandler img = new ImageHandler(imageUrl, uploadTime);
+                        ImageHandler img = new ImageHandler(imageUrl, uploadTime, imgId);
                         imageList.add(img);
                     }
                 }

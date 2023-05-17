@@ -5,4 +5,6 @@
     <color name="grey">#d2d2d2</color>
     <color name="day">#759F9F9F</color>
     <color name="night">#00000000</color>
+    <color name="positive">#64B5F6</color>
+    <color name="negatif">#EF5350</color>
 </resources>

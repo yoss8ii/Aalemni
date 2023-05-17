@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/shape">
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/err"
+        android:background="@drawable/shape"/>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Domamge"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif"
+        android:textSize="20dp"
+        android:layout_margin="5dp"/>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-thin"
+        android:text="Tu doit répéter la lecture de text, réessayer une autre fois !" />
+    <Button
+        android:id="@+id/oki"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/negatif"
+        android:text="OK"
+        android:textColor="@color/white"
+        android:layout_margin="5dp"/>
+</LinearLayout>

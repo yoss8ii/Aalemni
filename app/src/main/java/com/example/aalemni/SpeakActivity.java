@@ -1,15 +1,19 @@
 package com.example.aalemni;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -24,7 +28,9 @@ import java.util.Objects;
 
 
 //L'activité responsable au texte pour parler
-public class SpeakActivity extends AppCompatActivity implements TextToSpeech.OnInitListener{
+public class SpeakActivity extends AppCompatActivity implements TextToSpeech.OnInitListener {
+
+
 
     TextView result, voice;
     FloatingActionButton playpausebtn, micbtn;
@@ -32,7 +38,7 @@ public class SpeakActivity extends AppCompatActivity implements TextToSpeech.OnI
     TextToSpeech tts;
     String getresulttext;
     int currentPosition;
-    boolean isDone;
+    boolean isDone, notempty = false;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1;
 
 
@@ -46,9 +52,7 @@ public class SpeakActivity extends AppCompatActivity implements TextToSpeech.OnI
         bottomNavigationView.setSelectedItemId(R.id.bottom_speaker);
         navigation();
 
-
         //Initialisation des éléments graphiques
-        MyDialoge myDialoge = new MyDialoge(this);
         result = findViewById(R.id.newresulttext);
         voice = findViewById(R.id.voiceresult);
         playpausebtn = findViewById(R.id.play_pause);
@@ -83,26 +87,15 @@ public class SpeakActivity extends AppCompatActivity implements TextToSpeech.OnI
             });
         }
         micbtn.setOnClickListener(view -> getVoiceText());
-        int test;
-        if(result.getText().toString().length()>= 20){
-            test = 5;
-        }else {
-            test = 3;
-        }
-        comparebtn.setOnClickListener(view -> {
-            myDialoge.showFor(3000);
-            if(isAlmostIdentical(result.getText().toString(), voice.getText().toString(),test)){
-                Toast.makeText(SpeakActivity.this, "Identiques", Toast.LENGTH_SHORT).show();
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(TextReader.this);
-                builder.setIcon(R.drawable.good);
-                builder.setTitle("Félisitations");
-                builder.setMessage("Bravooo");*/
-            } else {
-                Toast.makeText(SpeakActivity.this, "ne sont pas identiques", Toast.LENGTH_SHORT).show();
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(TextReader.this);
-                builder.setIcon(R.drawable.err);
-                builder.setTitle("Dommage");
-                builder.setMessage("Vous devez répété");*/
+        comparebtn.setOnClickListener(v -> {
+            if(notempty){
+                if(isAlmostIdentical(result.getText().toString(), voice.getText().toString())){
+                    DialogWinn();
+                } else {
+                    DialogLose();
+                }
+            }else {
+                Toast.makeText(SpeakActivity.this, "Il y a pas de text à lire", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -171,7 +164,7 @@ public class SpeakActivity extends AppCompatActivity implements TextToSpeech.OnI
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
                 Locale.getDefault());
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Litre attentivement le text");
 
         try {
             startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT);
@@ -192,12 +185,14 @@ public class SpeakActivity extends AppCompatActivity implements TextToSpeech.OnI
                         RecognizerIntent.EXTRA_RESULTS);
                 voice.setText(
                         Objects.requireNonNull(result).get(0));
+                notempty = true;
             }
         }
     }
 
     //Comparaison entre les deux textes
-    public static boolean isAlmostIdentical(String s1, String s2, int threshold) {
+    public static boolean isAlmostIdentical(String s1, String s2) {
+        int threshold = (int) (s1.length() * 0.2);
         int[][] distance = new int[s1.length() + 1][s2.length() + 1];
         for (int i = 0; i <= s1.length(); i++) {
             distance[i][0] = i;
@@ -216,6 +211,27 @@ public class SpeakActivity extends AppCompatActivity implements TextToSpeech.OnI
         }
 
         return distance[s1.length()][s2.length()] <= threshold;
+    }
+
+    public void DialogWinn() {
+        View winn = LayoutInflater.from(this).inflate(R.layout.dialog_win,null);
+        AlertDialog.Builder alertok = new AlertDialog.Builder(this);
+        alertok.setView(winn);
+        final AlertDialog dialog = alertok.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+        Button okibtn = (Button) winn.findViewById(R.id.oki);
+        okibtn.setOnClickListener(v -> dialog.dismiss());
+    }
+    public void DialogLose() {
+        View lose = LayoutInflater.from(this).inflate(R.layout.dialog_lose,null);
+        AlertDialog.Builder alertok = new AlertDialog.Builder(this);
+        alertok.setView(lose);
+        final AlertDialog dialog = alertok.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+        Button okibtn = (Button) lose.findViewById(R.id.oki);
+        okibtn.setOnClickListener(v -> dialog.dismiss());
     }
 
     //Configuration du bar de navigation

@@ -86,6 +86,7 @@ public class SpeakActivity extends AppCompatActivity implements TextToSpeech.OnI
                 }
             });
         }
+
         micbtn.setOnClickListener(view -> getVoiceText());
         comparebtn.setOnClickListener(v -> {
             if(notempty){
